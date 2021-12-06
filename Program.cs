@@ -19,6 +19,8 @@ namespace Samlingsklasser
             Console.WriteLine("6. Queue-exempel.");
             Console.WriteLine("7. Stack-exempel.");
             Console.WriteLine("8. Övning 2");
+            Console.WriteLine("9. Övning 3");
+            Console.WriteLine("10. Övning 4");
 
             //Läs in menyval
             Console.Write("Ange siffra för vad du vill göra: ");
@@ -49,6 +51,12 @@ namespace Samlingsklasser
                     break;
                 case "8":
                     Övning2();
+                    break;
+                case "9":
+                    Övning3();
+                    break;
+                case "10":
+                    Övning4();
                     break;
             }
 
@@ -86,22 +94,41 @@ namespace Samlingsklasser
 
         static void Övning3()
         {
+            //skapar en random funktion till programmet
+            Random slump = new Random();
+            //skapar listan till Övning 3 med string 
             List<string> övning3 = new List<string>();
             
-            while(true)
+            //skapar en variabel till de 4 olika färgerna men tar även hjälp av array
+            var färg = new string[] { "h", "r", "k", "s" };
+            
+            // skapar en for loop till färgerna
+            for (int i = 0; i < 4; i++)
             {
-                Console.Write("Skriv in kortet:");
-                string kort = Console.ReadLine();
-                
-                if( kort != " " )
+                //lägger till färgerna plus essen i listan
+                övning3.Add(färg[i] + "e");
+                //skapar en for loop till talen från 2 till 10 i kortleken.
+                for (int tal = 2; tal <= 10; tal++)
                 {
-                    Environment.Exit(1);
-                }
-                else
-                {
-                    övning3.Add(string);
+                    //lägger till färger plus talen från 2 tull 10 i kortleken. 
+                    övning3.Add(färg[i] + tal.ToString());
                 }
             }
+            //skapar en while true tills antalet kort blir 0 kvar
+            while( övning3.Count != 0)
+            {
+                //skapar en variabel som heter random som är koppla till listan som skall slumpa fram alla antal kort
+                int random = slump.Next(0, övning3.Count);
+
+                //skapar en output som användaren skall se, typ resultatet av programmet
+                Console.WriteLine("Du tog upp kortet:" + övning3[random]);
+                //kod för att man skall ta bort det slumpmässiga kortet som man drog innan
+                övning3.RemoveAt(random);
+            }
+        }
+        static void Övning4()
+        {
+
         }
         static void DictionaryExempel()
         {
@@ -125,7 +152,32 @@ namespace Samlingsklasser
 
         static void DiceSortedList()
         {
-            //Övning 1
+            //Skapa en dictionary med int som nyckel och int som värde
+            Dictionary<int, int> resultat = new Dictionary<int, int>();
+
+            //skapa ett Random objekt för att slumpa
+            Random random = new Random();
+
+            //Gör tusen upprepnigar
+            for (int i = 0; i < 1000; i++)
+            {
+                //Slumpa tal mellan 1 och 6
+                int tal = random.Next(1, 7);
+
+                //Lägg nyckel om denna inte redan finns
+                if (!resultat.ContainsKey(tal))
+                    resultat.Add(tal, 0);
+
+                //Öka förekomsten av tal
+                resultat[tal]++;
+            }
+
+            //Visa resultatet
+            foreach (KeyValuePair<int, int> kvp in resultat)
+            {
+                Console.WriteLine("Nyckel: {0} Värde: {1}", kvp.Key, kvp.Value);
+            }
+
 
         }
 
