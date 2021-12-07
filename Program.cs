@@ -128,7 +128,52 @@ namespace Samlingsklasser
         }
         static void Övning4()
         {
-
+            //skapar en random function som heter första_tal
+            Random första_tal = new Random();
+            //skapar en variabel som heter kort som är en dictionary
+            var kort = new Dictionary<string, int>();
+            //skapar en variabel till de 4 olika färgerna men tar även hjälp av array
+            var färg = new string[] { "h", "r", "k", "s" };
+            //skapar en for loop till färgerna
+            for (int i= 0; i <=3; i++)
+            {
+                //lägger till färgerna plus essen i listan samt värdet 1 tillhör essen. Alltså ess = 1
+                kort.Add(färg[i] + "e",1);
+                //skapar en for loop till talen från 2 till 10 i kortleken.
+                for (int tal = 2; tal<= 10; tal++)
+                {
+                    //lägger till färger plus talen från 2 till 10 i kortleken, samt värdet för respektiv tal ska tillhöra talet, tex. kortet 2 ska ha värdet 2 osv.
+                   kort.Add(färg[i] + tal.ToString(),tal);
+                }
+                //lägger till färgen plus knäckten i listan samt tilläger att knäckten har värdet 11
+                kort.Add(färg[i] + "kn", 11);
+                //lägger till färgen plus damen i listan samt tilläger att damen har värdet 12
+                kort.Add(färg[i] + "d", 12);
+                //lägger till färgen plus kungen i listan samt tilläger att kungen har värdet 13
+                kort.Add(färg[i] + "k", 13);
+            }
+            //skapar en variabel som heter nyckel som ska bli en array
+            var nyckel = kort.Keys.ToArray();
+            //skapar en variabel som heter counter som är lika med 0
+            int counter = 0;
+            //skapar en for loop till 1000
+            for (int i = 0; i <= 1000; i++)
+            {
+                //skapar den första slump och talet ska fortsätta från noll till arrays längd.
+                int första_slump = första_tal.Next(0, nyckel.Length);
+                //skapar den andra slump och talet ska fortsätta från noll till arrays längd.
+                int andra_slump = första_tal.Next(0, nyckel.Length);
+                //skapar if sats där vi antar att första slumpen ska bli lika med andra slumpen
+                if (kort[nyckel[första_slump]] == kort[nyckel[andra_slump]])
+                {
+                    //Ifall första slump talet är lika med andra slump talet då ska man skriva ut "Par"
+                    Console.WriteLine("Par!");
+                    //den fortsätter räkna med +1 till counter värde
+                    counter++;
+                }
+            }
+            //skriver ut resultatet till counter.
+            Console.WriteLine(counter);
         }
         static void DictionaryExempel()
         {
